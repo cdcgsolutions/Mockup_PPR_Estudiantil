@@ -1,0 +1,111 @@
+/* =================================================================
+   PORTAL DE PRÁCTICAS PROFESIONALES - UNIVERSIDAD PRIVADA DOMINGO SAVIO (UPDS)
+   Estilos Tematizados UPDS y Simulación Microsoft Entra ID
+   ================================================================= */
+
+:root {
+  --upds-blue-deep: #00234d;
+  --upds-blue-primary: #003876;
+  --upds-blue-vibrant: #0d54a4;
+  --upds-amber: #f59e0b;
+  --upds-amber-hover: #d97706;
+  --ms-blue: #0067b8;
+  --ms-blue-hover: #005da6;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Barra de desplazamiento elegante */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Efectos visuales de identidad UPDS */
+.upds-gradient-hero {
+  background: linear-gradient(135deg, #001f47 0%, #003876 50%, #0d54a4 100%);
+}
+
+.upds-gold-badge {
+  background: linear-gradient(90deg, #fef3c7 0%, #fde68a 100%);
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+/* Simulación de Pantalla Microsoft Entra ID UPDS */
+.ms-login-backdrop {
+  background: radial-gradient(circle at 40% 40%, #003876 0%, #00214a 55%, #001229 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.ms-input-underline {
+  border: none;
+  border-bottom: 1px solid #666;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.2s ease;
+  font-size: 15px;
+  padding: 8px 0;
+  background: transparent;
+  width: 100%;
+}
+
+.ms-input-underline:focus {
+  border-bottom: 2px solid var(--ms-blue);
+}
+
+.ms-btn-primary {
+  background-color: var(--ms-blue);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 6px 28px;
+  min-height: 36px;
+  border: none;
+  border-radius: 0;
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+}
+
+.ms-btn-primary:hover {
+  background-color: var(--ms-blue-hover);
+}
+
+.ms-link {
+  color: var(--ms-blue);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.ms-link:hover {
+  text-decoration: underline;
+}
+
+/* Marca de agua UPDS Hombre Savio en fondo */
+.upds-watermark {
+  position: absolute;
+  bottom: -40px;
+  left: -20px;
+  width: 380px;
+  height: 380px;
+  opacity: 0.14;
+  pointer-events: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
