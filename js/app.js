@@ -1245,7 +1245,86 @@ function showToast(message, type = "info") {
   }, 4500);
 }
 
+/* =================================================================
+   10. PERFIL Y MODAL DE PERFIL (DESPLEGABLE Y CONFIGURACIÓN SAADS)
+   ================================================================= */
+function toggleProfileDropdown(event) {
+  if (event) event.stopPropagation();
+  const dropdown = document.getElementById('dropdown-profile');
+  if (dropdown) {
+    dropdown.classList.toggle('hidden');
+  }
+}
+
+function setAppTheme(mode) {
+  const btnLight = document.getElementById('theme-btn-light');
+  const btnDark = document.getElementById('theme-btn-dark');
+  const btnAuto = document.getElementById('theme-btn-auto');
+
+  const defaultClasses = "flex items-center justify-center py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-white transition text-xs font-semibold";
+  const activeClasses = "flex items-center justify-center py-1.5 rounded-lg text-slate-900 bg-white shadow-2xs font-bold text-xs text-[#003876]";
+
+  if (btnLight) btnLight.className = defaultClasses;
+  if (btnDark) btnDark.className = defaultClasses;
+  if (btnAuto) btnAuto.className = defaultClasses;
+
+  if (mode === 'light') {
+    document.documentElement.classList.remove('dark');
+    if (btnLight) btnLight.className = activeClasses;
+    showToast("Tema claro activado", "info");
+  } else if (mode === 'dark') {
+    document.documentElement.classList.add('dark');
+    if (btnDark) btnDark.className = activeClasses;
+    showToast("Tema oscuro seleccionado", "info");
+  } else {
+    document.documentElement.classList.remove('dark');
+    if (btnAuto) btnAuto.className = activeClasses;
+    showToast("Tema automático del sistema sincronizado", "info");
+  }
+}
+
+function openProfileModalDetail() {
+  const dropdown = document.getElementById('dropdown-profile');
+  if (dropdown) dropdown.classList.add('hidden');
+
+  const modal = document.getElementById('modal-profile-detail');
+  if (modal) {
+    modal.classList.remove('hidden');
+  }
+}
+
+function closeProfileModalDetail() {
+  const modal = document.getElementById('modal-profile-detail');
+  if (modal) {
+    modal.classList.add('hidden');
+  }
+}
+
+function handleLogout() {
+  const dropdown = document.getElementById('dropdown-profile');
+  if (dropdown) dropdown.classList.add('hidden');
+  
+  if (confirm("¿Deseas cerrar sesión en SAADS UPDS?")) {
+    showToast("Cerrando sesión en SAADS...", "info");
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  }
+}
+
+// Escuchar clicks fuera del desplegable del perfil para cerrarlo automáticamente
+document.addEventListener('click', function(event) {
+  const wrapper = document.getElementById('profile-popover-wrapper');
+  const dropdown = document.getElementById('dropdown-profile');
+  if (dropdown && !dropdown.classList.contains('hidden')) {
+    if (wrapper && !wrapper.contains(event.target)) {
+      dropdown.classList.add('hidden');
+    }
+  }
+});
+
 // Inicialización automática del portal SAADS al cargar el DOM
 window.addEventListener('DOMContentLoaded', () => {
   initPortal();
 });
+
