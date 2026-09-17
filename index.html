@@ -31,9 +31,9 @@
     <!-- Compact Control Header UPDS (Rediseño Compacto y Moderno) -->
     <div class="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 mb-6 shadow-xs">
       
-      <!-- Top Row: Identidad del Módulo + Acciones & Perfil Avatar (Fiel a SAADS v2) -->
-      <div class="flex flex-row items-center justify-between gap-4">
-        <!-- Left: Logo UPDS y Título del Módulo (Sin nombre ni correo en el header) -->
+      <!-- Top Row: Identidad del Módulo + Estudiante + Acciones -->
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <!-- Left: Logo UPDS y Título del Módulo con Datos del Estudiante -->
         <div class="flex items-center gap-3.5">
           <img src="logo-upds.jpeg" alt="Logo UPDS" onerror="this.src='https://saadsv2.upds.edu.bo/logosaadsv2.jpeg'"
             class="w-11 h-11 object-contain rounded-xl bg-[#002b66] p-1 border border-slate-200 shadow-2xs shrink-0">
@@ -48,95 +48,21 @@
                 <span id="dash-student-career-badge">Ingeniería de Sistemas</span>
               </span>
             </div>
+            <div class="text-xs text-slate-500 mt-1 flex flex-wrap items-center gap-x-2">
+              <span>Estudiante: <strong id="dash-student-name" class="text-slate-800 font-semibold">Carlos Daniel Cuellar</strong></span>
+              <span class="text-slate-300">•</span>
+              <span id="dash-student-sede" class="text-slate-500">sc.carlos.cuellar.g@upds.net.bo</span>
+            </div>
           </div>
         </div>
 
-        <!-- Right: Controles, Sede, Notificaciones e Icono de Perfil Avatar -->
+        <!-- Right: Botones de Acción Compactos -->
         <div class="flex items-center gap-2.5 shrink-0">
           <button id="btn-open-suggest" onclick="openSuggestModal()"
-            class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-white bg-[#003876] hover:bg-[#002855] rounded-xl shadow-xs transition transform active:scale-95">
+            class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-[#003876] hover:bg-[#002855] rounded-xl shadow-xs transition transform active:scale-95">
             <i data-lucide="plus" class="w-4 h-4 text-amber-300"></i>
-            <span class="hidden sm:inline">Proponer Empresa</span>
+            <span>Proponer Empresa</span>
           </button>
-
-          <!-- Pastilla de Sede UPDS -->
-          <div class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100/90 border border-slate-200 text-xs font-semibold text-slate-700">
-            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-[#003876]"></i>
-            <span>UPDS Trinidad</span>
-          </div>
-
-          <!-- Botón Notificaciones -->
-          <button class="p-2 rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition relative">
-            <i data-lucide="bell" class="w-4 h-4"></i>
-            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-blue-600 rounded-full"></span>
-          </button>
-
-          <!-- Perfil Avatar + Modal de Perfil Flotante (Desplegable superior derecho SAADS) -->
-          <div class="relative inline-block text-left" id="profile-popover-wrapper">
-            <button id="btn-profile-avatar" onclick="toggleProfileDropdown(event)"
-              title="Perfil de Estudiante"
-              class="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-black text-sm flex items-center justify-center transition shadow-md hover:ring-2 hover:ring-blue-300 focus:outline-hidden select-none cursor-pointer">
-              C
-            </button>
-
-            <!-- Modal Flotante del Perfil (Estilo SAADS v2 Exacto) -->
-            <div id="dropdown-profile"
-              class="hidden absolute right-0 top-full mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-4 z-50 animate-in fade-in zoom-in-95 duration-150">
-              
-              <!-- Encabezado del Perfil en Modal -->
-              <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
-                <div class="w-12 h-12 rounded-full bg-blue-600 text-white font-black text-lg flex items-center justify-center shrink-0 shadow-inner">
-                  C
-                </div>
-                <div class="overflow-hidden">
-                  <h4 class="text-sm font-bold text-slate-900 leading-tight truncate">Carlos Daniel Cuellar Guasde</h4>
-                  <p class="text-xs text-slate-500 truncate mt-0.5">daniel.cuellar@upds.edu.bo</p>
-                  <div class="mt-1.5 inline-flex items-center gap-1 text-[11px] font-bold text-[#003876] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200/80">
-                    <i data-lucide="map-pin" class="w-3 h-3 text-[#003876]"></i>
-                    <span id="modal-student-sede">UPDS Trinidad</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Opciones del Menú -->
-              <div class="pt-2 space-y-1">
-                <!-- Mi Perfil -->
-                <button onclick="openProfileModalDetail()" class="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 rounded-xl transition group text-left">
-                  <i data-lucide="user" class="w-4 h-4 text-slate-400 group-hover:text-[#003876] transition"></i>
-                  <span>Mi Perfil</span>
-                </button>
-
-                <!-- Selector de Tema (Sol, Luna, Contraste) -->
-                <div class="pt-1.5 pb-1">
-                  <span class="text-[11px] font-semibold text-slate-400 px-3 uppercase tracking-wider block mb-1.5">Tema</span>
-                  <div class="grid grid-cols-3 gap-1 bg-slate-100/90 p-1 rounded-xl border border-slate-200/60">
-                    <button onclick="setAppTheme('light')" id="theme-btn-light" title="Claro"
-                      class="flex items-center justify-center py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-white transition text-xs font-semibold shadow-2xs bg-white text-[#003876]">
-                      <i data-lucide="sun" class="w-4 h-4"></i>
-                    </button>
-                    <button onclick="setAppTheme('dark')" id="theme-btn-dark" title="Oscuro"
-                      class="flex items-center justify-center py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-white transition text-xs font-semibold">
-                      <i data-lucide="moon" class="w-4 h-4"></i>
-                    </button>
-                    <button onclick="setAppTheme('auto')" id="theme-btn-auto" title="Sistema"
-                      class="flex items-center justify-center py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-white transition text-xs font-semibold">
-                      <i data-lucide="contrast" class="w-4 h-4"></i>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Línea Separadora -->
-                <div class="border-t border-slate-100 my-1"></div>
-
-                <!-- Cerrar Sesión -->
-                <button onclick="handleLogout()" class="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-red-500 hover:bg-red-50 rounded-xl transition group text-left">
-                  <i data-lucide="log-out" class="w-4 h-4 text-red-500 group-hover:text-red-700 transition"></i>
-                  <span>Cerrar Sesión</span>
-                </button>
-              </div>
-
-            </div>
-          </div>
         </div>
       </div>
 
@@ -421,80 +347,6 @@
           </button>
         </div>
       </form>
-    </div>
-  </div>
-
-  <!-- MODAL: Detalle Completo de Mi Perfil Estudiantil -->
-  <div id="modal-profile-detail"
-    class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-    <div
-      class="bg-white rounded-3xl shadow-2xl max-w-md w-full flex flex-col border border-slate-200 animate-in fade-in zoom-in-95 duration-150 overflow-hidden">
-      
-      <!-- Header del Modal de Perfil -->
-      <div class="bg-gradient-to-r from-[#003876] to-[#002855] text-white p-6 relative">
-        <button onclick="closeProfileModalDetail()" class="absolute top-4 right-4 text-white/80 hover:text-white hover:bg-white/10 p-1.5 rounded-full transition" title="Cerrar">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-        <div class="flex items-center gap-4">
-          <div class="w-16 h-16 rounded-full bg-white text-[#003876] font-black text-2xl flex items-center justify-center shadow-md shrink-0">
-            C
-          </div>
-          <div>
-            <h3 class="text-lg font-black leading-tight">Carlos Daniel Cuellar Guasde</h3>
-            <p class="text-xs text-blue-200 mt-0.5">daniel.cuellar@upds.edu.bo</p>
-            <span class="inline-flex items-center gap-1 text-[11px] font-bold bg-white/20 text-white px-2.5 py-0.5 rounded-full mt-2 backdrop-blur-xs">
-              <i data-lucide="map-pin" class="w-3 h-3"></i>
-              UPDS Trinidad
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Detalle Académico del Perfil -->
-      <div class="p-6 space-y-4 text-xs text-slate-600">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Información Académica SAADS</h4>
-        
-        <div class="grid grid-cols-2 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-          <div>
-            <span class="text-[10px] text-slate-400 font-bold uppercase block">Carrera</span>
-            <span class="font-bold text-slate-900 text-xs">Ingeniería de Sistemas</span>
-          </div>
-          <div>
-            <span class="text-[10px] text-slate-400 font-bold uppercase block">Código Universitario</span>
-            <span class="font-bold text-slate-900 text-xs">EST-2024-8849</span>
-          </div>
-          <div>
-            <span class="text-[10px] text-slate-400 font-bold uppercase block">Semestre Actual</span>
-            <span class="font-bold text-slate-900 text-xs">8vo Semestre</span>
-          </div>
-          <div>
-            <span class="text-[10px] text-slate-400 font-bold uppercase block">Avance Curricular</span>
-            <span class="font-bold text-emerald-700 text-xs">84% Completado</span>
-          </div>
-        </div>
-
-        <div class="space-y-2 pt-2 border-t border-slate-100">
-          <div class="flex items-center justify-between py-1">
-            <span class="text-slate-500 font-medium">Requisito de Práctica Profesional</span>
-            <span class="font-bold text-[#003876]">360 Horas</span>
-          </div>
-          <div class="flex items-center justify-between py-1">
-            <span class="text-slate-500 font-medium">Estado de Habilitación</span>
-            <span class="font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">Habilitado</span>
-          </div>
-          <div class="flex items-center justify-between py-1">
-            <span class="text-slate-500 font-medium">Sede Principal</span>
-            <span class="font-semibold text-slate-800">Sede Trinidad (Beni)</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer Modal -->
-      <div class="p-4 bg-slate-50 border-t border-slate-100 text-right">
-        <button onclick="closeProfileModalDetail()" class="px-5 py-2 text-xs font-bold text-white bg-[#003876] hover:bg-[#002855] rounded-xl shadow-xs transition">
-          Entendido
-        </button>
-      </div>
     </div>
   </div>
 
